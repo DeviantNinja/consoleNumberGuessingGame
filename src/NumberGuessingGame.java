@@ -9,11 +9,14 @@ public class NumberGuessingGame {
         int number = rand.nextInt(101);
         int guessedNumber;
         int guessCount = 0;
+        int numberOfTries = 10;
         boolean gameOver = false;
 
-        while(!gameOver) {
+        System.out.printf("you have %d tries to guess the number\n",numberOfTries);
+        while(!gameOver && guessCount < numberOfTries) {
             guessCount++;
             System.out.print("Guess a number between 1 and 100: ");
+
             while(!input.hasNextInt()) {
                 System.out.print("Invalid Entry, Guess Again!");
                 input.next();
@@ -27,6 +30,10 @@ public class NumberGuessingGame {
                 break;
             }
             System.out.printf("Incorrect Number. Your guess was %s !\n", guessedNumber > number ? "to high" : "to low");
+        }
+
+        if(!gameOver) {
+            System.out.printf("You exceeded the number of guesses the number was %d",  number);
         }
     }
 }
